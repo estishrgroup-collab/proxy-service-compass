@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## App architecture
+
+- Telegram order intake uses a public TanStack webhook that validates Telegram's secret before privileged writes; customer requests stay manual until payment and supplier fulfillment are separately confirmed.

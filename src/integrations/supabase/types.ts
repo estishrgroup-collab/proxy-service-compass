@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      telegram_bot_sessions: {
+        Row: {
+          provider: string
+          state: string
+          telegram_chat_id: number
+          telegram_user_id: number
+          updated_at: string
+        }
+        Insert: {
+          provider: string
+          state?: string
+          telegram_chat_id: number
+          telegram_user_id: number
+          updated_at?: string
+        }
+        Update: {
+          provider?: string
+          state?: string
+          telegram_chat_id?: number
+          telegram_user_id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      telegram_order_requests: {
+        Row: {
+          created_at: string
+          id: string
+          provider: string
+          request_details: string
+          source_update_id: number
+          status: string
+          telegram_chat_id: number
+          telegram_user_id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          provider: string
+          request_details: string
+          source_update_id: number
+          status?: string
+          telegram_chat_id: number
+          telegram_user_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          provider?: string
+          request_details?: string
+          source_update_id?: number
+          status?: string
+          telegram_chat_id?: number
+          telegram_user_id?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

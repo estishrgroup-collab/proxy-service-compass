@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795438847492,
+      "tag": "0000_create_telegram_proxy_orders",
+      "breakpoints": true
+    }
+  ]
 }
