@@ -37,27 +37,27 @@ import {
 export interface TelegramUpdate {
   update_id: number;
   message?: {
-    message_id?: number;
+    message_id?: number | undefined;
     chat: { id: number; type: string };
-    from?: { id: number; username?: string; first_name?: string };
-    text?: string;
-  };
+    from?: { id: number; username?: string | undefined; first_name?: string | undefined } | undefined;
+    text?: string | undefined;
+  } | undefined;
   callback_query?: {
     id: string;
-    data?: string;
-    from: { id: number; username?: string; first_name?: string };
-    message?: { message_id?: number; chat: { id: number; type: string } };
-  };
+    data?: string | undefined;
+    from: { id: number; username?: string | undefined; first_name?: string | undefined };
+    message?: { message_id?: number | undefined; chat: { id: number; type: string } } | undefined;
+  } | undefined;
 }
 
 async function openCatalog(input: {
   userId: number;
   chatId: number;
-  messageId?: number;
+  messageId?: number | undefined;
   provider: OrderableProviderId;
   page: number;
   countryFilter: string | null;
-  cityOrZip?: string;
+  cityOrZip?: string | undefined;
 }): Promise<void> {
   const safePage = Math.max(0, input.page);
   const isZip = input.cityOrZip ? /^\d{3,10}$/.test(input.cityOrZip.trim()) : false;
@@ -118,7 +118,7 @@ async function openCatalog(input: {
 async function handleBuy(input: {
   userId: number;
   chatId: number;
-  messageId?: number;
+  messageId?: number | undefined;
   provider: OrderableProviderId;
   index: number;
   hours: number;
