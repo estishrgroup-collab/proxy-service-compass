@@ -8,6 +8,13 @@
       "when": 1795438847492,
       "tag": "0000_create_telegram_proxy_orders",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795500736391,
+      "tag": "0001_proxy_store_wallets_and_orders",
+      "breakpoints": true
     }
   ]
 }

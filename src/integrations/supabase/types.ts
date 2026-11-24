@@ -14,27 +14,158 @@ export type Database = {
   }
   public: {
     Tables: {
+      proxy_orders: {
+        Row: {
+          city: string | null
+          country: string | null
+          created_at: string
+          failure_reason: string | null
+          hours: number | null
+          id: string
+          isp: string | null
+          profit_cents: number | null
+          provider: string
+          real_ip: string | null
+          region: string | null
+          retail_cents: number
+          socks_host: string | null
+          socks_password: string | null
+          socks_port: number | null
+          socks_username: string | null
+          source_update_id: number | null
+          status: string
+          supplier_order_id: string | null
+          supplier_proxy_id: string
+          telegram_chat_id: number
+          telegram_user_id: number
+          updated_at: string
+          wholesale_cents: number
+        }
+        Insert: {
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          failure_reason?: string | null
+          hours?: number | null
+          id?: string
+          isp?: string | null
+          profit_cents?: number | null
+          provider: string
+          real_ip?: string | null
+          region?: string | null
+          retail_cents: number
+          socks_host?: string | null
+          socks_password?: string | null
+          socks_port?: number | null
+          socks_username?: string | null
+          source_update_id?: number | null
+          status?: string
+          supplier_order_id?: string | null
+          supplier_proxy_id: string
+          telegram_chat_id: number
+          telegram_user_id: number
+          updated_at?: string
+          wholesale_cents: number
+        }
+        Update: {
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          failure_reason?: string | null
+          hours?: number | null
+          id?: string
+          isp?: string | null
+          profit_cents?: number | null
+          provider?: string
+          real_ip?: string | null
+          region?: string | null
+          retail_cents?: number
+          socks_host?: string | null
+          socks_password?: string | null
+          socks_port?: number | null
+          socks_username?: string | null
+          source_update_id?: number | null
+          status?: string
+          supplier_order_id?: string | null
+          supplier_proxy_id?: string
+          telegram_chat_id?: number
+          telegram_user_id?: number
+          updated_at?: string
+          wholesale_cents?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "proxy_orders_telegram_user_id_fkey"
+            columns: ["telegram_user_id"]
+            isOneToOne: false
+            referencedRelation: "telegram_customers"
+            referencedColumns: ["telegram_user_id"]
+          },
+        ]
+      }
       telegram_bot_sessions: {
         Row: {
+          country_filter: string | null
+          page: number
           provider: string
+          selected_proxy_id: string | null
+          selected_proxy_json: Json | null
           state: string
           telegram_chat_id: number
           telegram_user_id: number
           updated_at: string
         }
         Insert: {
+          country_filter?: string | null
+          page?: number
           provider: string
+          selected_proxy_id?: string | null
+          selected_proxy_json?: Json | null
           state?: string
           telegram_chat_id: number
           telegram_user_id: number
           updated_at?: string
         }
         Update: {
+          country_filter?: string | null
+          page?: number
           provider?: string
+          selected_proxy_id?: string | null
+          selected_proxy_json?: Json | null
           state?: string
           telegram_chat_id?: number
           telegram_user_id?: number
           updated_at?: string
+        }
+        Relationships: []
+      }
+      telegram_customers: {
+        Row: {
+          balance_cents: number
+          created_at: string
+          first_name: string | null
+          telegram_chat_id: number
+          telegram_user_id: number
+          updated_at: string
+          username: string | null
+        }
+        Insert: {
+          balance_cents?: number
+          created_at?: string
+          first_name?: string | null
+          telegram_chat_id: number
+          telegram_user_id: number
+          updated_at?: string
+          username?: string | null
+        }
+        Update: {
+          balance_cents?: number
+          created_at?: string
+          first_name?: string | null
+          telegram_chat_id?: number
+          telegram_user_id?: number
+          updated_at?: string
+          username?: string | null
         }
         Relationships: []
       }
@@ -71,12 +202,79 @@ export type Database = {
         }
         Relationships: []
       }
+      wallet_transactions: {
+        Row: {
+          amount_cents: number
+          balance_after_cents: number
+          created_at: string
+          id: string
+          note: string | null
+          reference_id: string | null
+          telegram_user_id: number
+          type: string
+        }
+        Insert: {
+          amount_cents: number
+          balance_after_cents: number
+          created_at?: string
+          id?: string
+          note?: string | null
+          reference_id?: string | null
+          telegram_user_id: number
+          type: string
+        }
+        Update: {
+          amount_cents?: number
+          balance_after_cents?: number
+          created_at?: string
+          id?: string
+          note?: string | null
+          reference_id?: string | null
+          telegram_user_id?: number
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wallet_transactions_telegram_user_id_fkey"
+            columns: ["telegram_user_id"]
+            isOneToOne: false
+            referencedRelation: "telegram_customers"
+            referencedColumns: ["telegram_user_id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      credit_telegram_wallet: {
+        Args: {
+          p_amount_cents: number
+          p_chat_id: number
+          p_note?: string
+          p_reference_id: string
+          p_type: string
+          p_user_id: number
+        }
+        Returns: {
+          applied: boolean
+          balance_cents: number
+        }[]
+      }
+      debit_telegram_wallet: {
+        Args: {
+          p_amount_cents: number
+          p_note?: string
+          p_reference_id: string
+          p_user_id: number
+        }
+        Returns: {
+          balance_cents: number
+          error_code: string
+          ok: boolean
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

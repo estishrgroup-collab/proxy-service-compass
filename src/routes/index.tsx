@@ -57,11 +57,11 @@ function Index() {
           <div className="shop-intro-grid">
             <div>
               <h1 id="page-title">luxpoxy</h1>
-              <p className="shop-lede">Proxy requests, handled with a human check before any order is placed.</p>
+              <p className="shop-lede">Live SOCKS5 &amp; residential proxies sold at 2x wholesale with automated API delivery in Telegram.</p>
             </div>
             <div className="shop-mode-tag">
               <span className="shop-mode-dot" aria-hidden="true" />
-              REQUEST ONLY <span className="shop-mode-divider">·</span> MANUAL CONFIRMATION
+              LIVE CATALOG <span className="shop-mode-divider">·</span> 2X MARKUP
             </div>
           </div>
         </section>
@@ -78,9 +78,9 @@ function Index() {
             <div className="shop-overview-note">Exclusive and Turbo</div>
           </article>
           <article className="shop-overview-item">
-            <div className="shop-overview-label">ORDER STATUS</div>
-            <div className="shop-overview-value">Manual review</div>
-            <div className="shop-overview-note">No charge or auto-purchase</div>
+            <div className="shop-overview-label">SELLING MODEL</div>
+            <div className="shop-overview-value">2x markup</div>
+            <div className="shop-overview-note">Prepaid crypto wallet · auto API buy</div>
           </article>
         </section>
 
@@ -116,7 +116,7 @@ function Index() {
 
         <footer className="shop-footer">
           <p>Fresh and Smart remain unavailable until secure HTTPS API addresses are provided.</p>
-          <p>Payments and automatic proxy activation are not enabled.</p>
+          <p>Automatic supplier buying &amp; refund protection are active; connect a crypto gateway to enable live top-up invoices.</p>
         </footer>
       </main>
     </div>
